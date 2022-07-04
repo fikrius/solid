@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'SiteController@getShippingPrice');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/site/getShippingPrice', 'SiteController@getShippingPrice');
+Route::post('/site/getShippingPrice', 'SiteController@getShippingPrice');
+
+Route::get('/city/getCities', 'cityController@getCities');
+
