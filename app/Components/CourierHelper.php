@@ -6,7 +6,7 @@ class CourierHelper
 {
     
     public static function getSampleCourier(){
-        return ['-- Pilih --','jne','tiki'];
+        return ['-- Pilih --','jne','tiki','pos'];
     } 
 
 }

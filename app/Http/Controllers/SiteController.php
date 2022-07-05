@@ -72,7 +72,6 @@ class SiteController extends Controller
                 $err = curl_error($curl);
                 curl_close($curl);
 
-                $err = true;
                 if ($err) {
                     throw new Exception("cURL Error #:" . $err);
                 }
