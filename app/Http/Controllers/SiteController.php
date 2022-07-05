@@ -12,12 +12,7 @@ use App\Services\RajaongkirCostService;
 
 class SiteController extends Controller
 {
-    protected $rajaongkirCostService;
 
-    public function __construct(){
-        $this->rajaongkirCostService = new RajaongkirCostService(new RajaongkirCostRepository);
-    }
-    
     public function getShippingPrice(Request $request){
 
         $errors = [];
@@ -31,8 +26,10 @@ class SiteController extends Controller
         if(isset($inputData) && !empty($inputData)){
 
             try {          
-                    
-                $response = $this->rajaongkirCostService->execute($inputData);
+
+                $rajaongkirCostService = new RajaongkirCostService(new RajaongkirCostRepository);
+                $response = $rajaongkirCostService->execute($inputData);
+
                 if(isset($response)){
                     $results = [
                         'success' => 1, 

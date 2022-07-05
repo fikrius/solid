@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Contracts\ShippableInterface;
 use App\Contracts\ShippingAdditionalWeightInterface;
 use App\Pattern\BubbleWrap;
 use App\Pattern\PackingKayu;
@@ -12,19 +13,19 @@ use App\Repositories\RajaongkirCostRepository;
 class RajaongkirCostService 
 {
 
-    protected $rajaongkirCostRepository;
+    protected $shippable;
 
-    public function __construct(RajaongkirCostRepository $rajaongkirCostRepository){
-        $this->rajaongkirCostRepository = $rajaongkirCostRepository;
+    public function __construct(ShippableInterface $shippable){
+        $this->shippable = $shippable;
     }
 
     public function execute($postfields){
         
-        $postfields = $this->rajaongkirCostRepository->validate($postfields);
+        $postfields = $this->shippable->validate($postfields);
 
-        $postfields['weight'] = $this->rajaongkirCostRepository->setAdditionalWeight(new PackingKayu($postfields['weight']));
+        $postfields['weight'] = $this->shippable->setAdditionalWeight(new PackingKayu($postfields['weight']));
 
-        $response = $this->rajaongkirCostRepository->getCost($postfields);
+        $response = $this->shippable->getCost($postfields);
 
         return $response;
     }

@@ -3,11 +3,12 @@
 namespace App\Repositories;
 
 use App\Components\JsonValidator;
+use App\Contracts\ShippableInterface;
 use App\Pattern\BubbleWrap;
 use App\Pattern\PackingKayu;
 use Exception;
 
-class RajaongkirCostRepository
+class RajaongkirCostRepository implements ShippableInterface
 {
 
     public function validate($postfields){
