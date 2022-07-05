@@ -6,6 +6,7 @@ use Exception;
 use Illuminate\Http\Request;
 use App\Components\CityHelper;
 use App\Components\CourierHelper;
+use App\Repositories\CompanyCostRepository;
 use App\Repositories\RajaongkirCostRepository;
 use App\Services\RajaongkirCostService;
 
@@ -32,12 +33,11 @@ class SiteController extends Controller
             try {          
                     
                 $response = $this->rajaongkirCostService->execute($inputData);
-
-                if(isset($response['rajaongkir']['results'])){
+                if(isset($response)){
                     $results = [
                         'success' => 1, 
                         'message' => 'Sukses get shipping price raja ongkir',
-                        'data' => $response['rajaongkir']['results']
+                        'data' => $response
                     ];
                 }
                 

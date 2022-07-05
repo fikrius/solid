@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use App\Components\JsonValidator;
+use App\Pattern\BubbleWrap;
+use App\Pattern\PackingKayu;
+use App\Pattern\PlasticBox;
 use Exception;
 
 class RajaongkirCostRepository
@@ -54,8 +57,29 @@ class RajaongkirCostRepository
 
         $response = JsonValidator::validate($response);
 
-        return json_decode($response, true); 
+        $response = json_decode($response, true); 
+        if(!isset($response['rajaongkir']['results']))
+            return null;
 
+        return $response['rajaongkir']['results'];
     }
+
+    public function setAdditionalWeight($item){
+
+        $weight = null;
+        if($item instanceof BubbleWrap){
+            $weight = $item->getWeight() + 300;
+        }else if($item instanceof PackingKayu){
+            $weight = $item->getWeight() + 100;
+        }else if($item instanceof PlasticBox){
+            $weight = $item->calculateWeight();
+        }
+
+        return $weight;
+    }
+
+    // public function setAdditionalWeight(ShippingAdditionalWeightInterface $item){
+    //     return $item->calculateWeight();
+    // }
 
 }
