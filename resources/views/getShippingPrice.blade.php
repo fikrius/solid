@@ -76,9 +76,9 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <h5>Kota Asal</h5>
-                                <select name="ShippingPrice[origin_city]" id="origin_city" class="form-control" required>
+                                <select name="ShippingPrice[origin]" id="origin" class="form-control" required>
                                     @foreach ($originCitySamples as $key => $originCitySample)
-                                        <option value="{{ $key }}" {{ isset($inputData['origin_city']) && $inputData['origin_city'] == $key ? 'selected' : '' }}>{{ $originCitySample }}</option>
+                                        <option value="{{ $key }}" {{ isset($inputData['origin']) && $inputData['origin'] == $key ? 'selected' : '' }}>{{ $originCitySample }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -86,9 +86,9 @@
                         <div class="col-lg-2">
                             <div class="form-group">
                                 <h5>Kota Tujuan</h5>
-                                <select name="ShippingPrice[destination_city]" id="destination_city" class="form-control" required>
+                                <select name="ShippingPrice[destination]" id="destination" class="form-control" required>
                                     @foreach ($destinationCitySamples as $key => $destinationCitySample)
-                                        <option value="{{ $key }}" {{ isset($inputData['destination_city']) && $inputData['destination_city'] == $key ? 'selected' : '' }}>{{ $destinationCitySample }}</option>
+                                        <option value="{{ $key }}" {{ isset($inputData['destination']) && $inputData['destination'] == $key ? 'selected' : '' }}>{{ $destinationCitySample }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -104,7 +104,7 @@
                                 <h5>Kurir</h5>
                                 <select name="ShippingPrice[courier]" id="courier" class="form-control" required>
                                     @foreach ($courierSamples as $courierSample)
-                                        <option value="{{ $courierSample }}" {{ isset($inputData['courier']) && $inputData['courier'] == $courierSample ? 'selected' : '' }}>{{ $courierSample }}</option>
+                                        <option value="{{ $courierSample != '-- Pilih --' ? $courierSample : '' }}" {{ isset($inputData['courier']) && $inputData['courier'] == $courierSample ? 'selected' : '' }}>{{ $courierSample }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -189,7 +189,7 @@
 <script>
 
     // Tidak jadi dipakai
-    $('.origin_city').select2({
+    $('.origin').select2({
         dropdownCssClass : 'no-search',
         ajax: {
             url: '/city/getCities',
@@ -212,7 +212,7 @@
     });
 
     // Tidak jadi dipakai
-    $('.destination_city').select2({
+    $('.destination').select2({
         ajax: {
             url: '/city/getCities',
             data: function (params) {
@@ -227,7 +227,7 @@
         }
     });
 
-    // {{-- <select class="origin_city form-control" name="state" style="width: 100%"></select> --}}
-    // {{-- <select class="destination_city form-control" name="state" style="width: 100%"></select> --}}
+    // {{-- <select class="origin form-control" name="state" style="width: 100%"></select> --}}
+    // {{-- <select class="destination form-control" name="state" style="width: 100%"></select> --}}
 
 </script>

@@ -5,6 +5,6 @@ namespace App\Components;
 class Constant
 {
     
-    define()
+    // define()
 
 }
