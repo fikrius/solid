@@ -33,11 +33,11 @@ class SiteController extends Controller
                     
                 $response = $this->rajaongkirCostService->execute($inputData);
 
-                if(isset($response['rajaongkir']['results'])){
+                if(isset($response)){
                     $results = [
                         'success' => 1, 
                         'message' => 'Sukses get shipping price raja ongkir',
-                        'data' => $response['rajaongkir']['results']
+                        'data' => $response
                     ];
                 }
                 

@@ -54,8 +54,11 @@ class RajaongkirCostRepository
 
         $response = JsonValidator::validate($response);
 
-        return json_decode($response, true); 
+        $response = json_decode($response, true); 
+        if(!isset($response['rajaongkir']['results']))
+            return null;
 
+        return $response['rajaongkir']['results'];
     }
 
 }
