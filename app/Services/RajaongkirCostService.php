@@ -5,7 +5,6 @@ namespace App\Services;
 use App\Contracts\ShippingAdditionalWeightInterface;
 use App\Pattern\BubbleWrap;
 use App\Pattern\PackingKayu;
-use App\Pattern\PlasticBox;
 use App\Repositories\CompanyCostRepository;
 use Exception;
 use App\Repositories\RajaongkirCostRepository;
@@ -23,7 +22,7 @@ class RajaongkirCostService
         
         $postfields = $this->rajaongkirCostRepository->validate($postfields);
 
-        $postfields['weight'] = $this->rajaongkirCostRepository->setAdditionalWeight(new PlasticBox($postfields['weight']));
+        $postfields['weight'] = $this->rajaongkirCostRepository->setAdditionalWeight(new PackingKayu($postfields['weight']));
 
         $response = $this->rajaongkirCostRepository->getCost($postfields);
 

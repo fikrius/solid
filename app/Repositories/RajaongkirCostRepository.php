@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Components\JsonValidator;
 use App\Pattern\BubbleWrap;
 use App\Pattern\PackingKayu;
-use App\Pattern\PlasticBox;
 use Exception;
 
 class RajaongkirCostRepository
@@ -71,8 +70,6 @@ class RajaongkirCostRepository
             $weight = $item->getWeight() + 300;
         }else if($item instanceof PackingKayu){
             $weight = $item->getWeight() + 100;
-        }else if($item instanceof PlasticBox){
-            $weight = $item->calculateWeight();
         }
 
         return $weight;
